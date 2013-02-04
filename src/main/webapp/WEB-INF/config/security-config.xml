@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+           http://www.springframework.org/schema/security
+           http://www.springframework.org/schema/security/spring-security-3.0.xsd">
+
+	<!-- Configure Spring Security -->
+	<security:http use-expressions="true" auto-config="true">
+		<security:intercept-url pattern="/resources/**" access="permitAll" />
+		<security:intercept-url pattern="/login" access="permitAll" />
+		<security:intercept-url pattern="/**/team/admin/**" access="hasAnyRole('ROLE_SUPERVISOR', 'ROLE_TEAM_SUPERVISOR')"/>
+		<security:intercept-url pattern="/**/work/admin/**" access="hasAnyRole('ROLE_SUPERVISOR', 'ROLE_TEAM_SUPERVISOR')"/>
+		<security:intercept-url pattern="/**/project/admin/**" access="hasAnyRole('ROLE_SUPERVISOR', 'ROLE_TEAM_SUPERVISOR')"/>
+		<security:intercept-url pattern="/**/task/admin/**" access="hasAnyRole('ROLE_SUPERVISOR', 'ROLE_TEAM_SUPERVISOR')"/>
+		<security:intercept-url pattern="/**/admin/**" access="hasRole('ROLE_SUPERVISOR')"/>
+		<security:intercept-url pattern="/**/userleavepolicy/**" access="hasRole('ROLE_SUPERVISOR')"/>
+		<security:intercept-url pattern="/**" access="hasRole('ROLE_USER')"/>
+		<security:form-login login-page="/login" authentication-failure-url="/login?authValid=false" />
+	</security:http>
+	<security:authentication-manager>
+		<security:authentication-provider>
+			<security:password-encoder hash="md5"/>
+			<security:jdbc-user-service id="userService" data-source-ref="myDataSource" 
+			users-by-username-query="select user_name, password, true from officecube.USER where user_name=? and active='1'"
+			authorities-by-username-query="select user_name, role_name from officecube.USER u, officecube.ROLE r where u.user_name=? and u.pkey=r.user_id and  u.active='1'"/>
+		</security:authentication-provider>
+	</security:authentication-manager>
+</beans>

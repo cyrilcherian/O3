@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="app.office.cube.persistence">
+
+    <class name="OfficeHoliday" table="OFFICE_HOLIDAY">
+        <id name="myKey" column="PKEY">
+            <generator class="hilo"/>
+        </id>
+        <property name="createdDate" update="false" insert="true"  type="date" column="CREATED_DATE"/>
+        <property name="updatedDate" type="date" column="UPDATED_DATE"/>        
+        <property name="description" column="DESCRIPTION" not-null="true"/>
+        <property name="date" column="DATE" type="date" not-null="true"/>
+    </class>
+	<query name="listOfficeHoliday">
+		from app.office.cube.persistence.OfficeHoliday
+	</query>
+
+</hibernate-mapping>

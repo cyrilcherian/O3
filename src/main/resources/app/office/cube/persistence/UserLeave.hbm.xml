@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="app.office.cube.persistence">
+
+    <class name="UserLeave" table="USER_LEAVE">
+        <id name="myKey" column="PKEY">
+            <generator class="increment"/>
+        </id>
+        <property name="createdDate" update="false" insert="true"  type="date" column="CREATED_DATE"/>
+        <property name="updatedDate" type="date" column="UPDATED_DATE"/>        
+        <many-to-one name="userLeavePolicy" cascade="none" column="USER_LEAVE_POLICY_ID" class="UserLeavePolicy" not-null="true"/>
+        <property name="days" column="DAYS" not-null="true"/>
+        <property name="description" column="DESCRIPTION"/>
+        <property name="startDate" column="START_DATE" type="java.sql.Date"/>
+        <property name="endDate" column="END_DATE" type="java.sql.Date"/>
+        <property name="status" column="STATUS" not-null="true">
+        	<type name="org.hibernate.type.EnumType">
+				<param name="enumClass">app.office.cube.persistence.LeaveStatus</param>
+				<param name="type">12</param>
+			</type>
+        </property>
+    </class>
+	<query name="listUserLeaves">
+		from app.office.cube.persistence.UserLeave
+	</query>
+
+</hibernate-mapping>

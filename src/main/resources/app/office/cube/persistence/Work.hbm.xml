@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="app.office.cube.persistence">
+    <class name="Work" table="WORK">
+        <id name="myKey" column="PKEY">
+            <generator class="increment"/>
+        </id>
+        <property name="createdDate" update="false" insert="true"  type="date" column="CREATED_DATE"/>
+        <property name="updatedDate" type="date" column="UPDATED_DATE"/>        
+        <many-to-one name="task" class="Task" column="TASK_ID" cascade="none" fetch="join" lazy="false" not-null="true"/>
+        <many-to-one name="project" class="Project" column="PROJECT_ID" cascade="none" fetch="join" lazy="false" not-null="true"/>
+        <many-to-one name="user" class="User" column="USER_ID" cascade="none" fetch="join" lazy="false" not-null="true"/>
+        <property name="description" column="DESCRIPTION" not-null="true"/>
+        <property name="issues" column="ISSUES"/>
+        <property name="hours" column="HOURS" not-null="true"/>
+        <property name="date" column="DATE" type="date" not-null="true"/>
+     </class>
+    <query name="listWorks" >
+		from app.office.cube.persistence.Work
+	</query>
+
+</hibernate-mapping>

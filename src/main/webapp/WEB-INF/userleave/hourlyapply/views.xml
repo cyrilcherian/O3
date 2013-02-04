@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+	"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+	"http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+	
+<tiles-definitions>
+	<definition name="enterHourLeaveDetails" extends="standardLayout">
+		<put-attribute name="center" value="/WEB-INF/userleave/hourlyapply/enterHourLeaveDetails.jsp"/>
+		<put-attribute name="menu" value="/WEB-INF/userleave/menu.jsp" />
+	</definition>
+	
+	<definition name="reviewHourLeaveDetails" extends="standardLayout">
+		<put-attribute name="center" value="/WEB-INF/userleave/hourlyapply/reviewHourLeaveDetails.jsp"/>
+		<put-attribute name="menu" value="/WEB-INF/userleave/menu.jsp" />
+	</definition>
+	
+</tiles-definitions>

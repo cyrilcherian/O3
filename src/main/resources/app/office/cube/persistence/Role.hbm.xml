@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="app.office.cube.persistence">
+
+    <class name="Role" table="ROLE">
+        <id name="myKey" column="PKEY">
+            <generator class="increment"/>
+        </id>
+        <property name="createdDate" update="false" insert="true"  type="date" column="CREATED_DATE"/>
+        <property name="updatedDate" type="date" column="UPDATED_DATE"/>        
+        <property name="roleName" column="ROLE_NAME" not-null="true"/>
+    </class>
+</hibernate-mapping>

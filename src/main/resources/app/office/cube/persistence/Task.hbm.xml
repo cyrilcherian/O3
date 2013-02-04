@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="app.office.cube.persistence">
+    <class name="Task" table="TASK">
+        <id name="myKey" column="PKEY">
+            <generator class="hilo"/>
+        </id>
+        <property name="createdDate" update="false" insert="true"  type="date" column="CREATED_DATE"/>
+        <property name="updatedDate" type="date" column="UPDATED_DATE"/>        
+        <property name="name" column="NAME" unique="true" not-null="true"/>
+        <property name="description" column="DESCRIPTION" not-null="true"/>
+    </class>
+	<query name="listTasks">
+		from app.office.cube.persistence.Task
+	</query>
+</hibernate-mapping>

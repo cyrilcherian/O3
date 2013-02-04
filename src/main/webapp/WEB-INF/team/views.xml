@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+	"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+	"http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+	
+<tiles-definitions>
+	<definition name="team/partial/*" extends="partialLayout">
+		<put-attribute name="center" value="/WEB-INF/team/partial/{1}.jsp" />
+	</definition>
+	<definition name="team/*" extends="standardLayout">
+		<put-attribute name="center" value="/WEB-INF/team/{1}.jsp" />
+		<put-attribute name="menu" value="/WEB-INF/team/menu.jsp" />
+	</definition>
+</tiles-definitions>

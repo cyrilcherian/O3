@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+	"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+	"http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+	
+<tiles-definitions>
+	<definition name="enterLeaveDetails" extends="standardLayout">
+		<put-attribute name="center" value="/WEB-INF/userleave/apply/enterLeaveDetails.jsp"/>
+		<put-attribute name="menu" value="/WEB-INF/userleave/menu.jsp" />
+	</definition>
+	
+	<definition name="reviewLeaveDetails" extends="standardLayout">
+		<put-attribute name="center" value="/WEB-INF/userleave/apply/reviewLeaveDetails.jsp"/>
+		<put-attribute name="menu" value="/WEB-INF/userleave/menu.jsp" />
+	</definition>
+	
+</tiles-definitions>

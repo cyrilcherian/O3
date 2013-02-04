@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+	<var name="userLeave" class="app.office.cube.persistence.UserLeave"/>
+	<input name="userLeavePolicyId" required="true" />
+	<on-start>
+			<evaluate expression="userLeavePolicyService.get(userLeavePolicyId)" result="flowScope.userLeavePolicy" />
+			<evaluate expression="userLeave.setUserLeavePolicy(userLeavePolicy)" />
+	</on-start>
+	
+	<view-state id="enterHourLeaveDetails" model="userLeave">
+		<transition on="proceed" to="reviewHourLeaveDetails" />
+		<transition on="cancel" to="cancel" bind="false" />
+	</view-state>
+	
+	<view-state id="reviewHourLeaveDetails" model="userLeave">
+		<on-entry>
+			<evaluate expression="userLeaveService.isWeekHoliday(userLeave.startDate)" result="viewScope.isWeekHoliday" />
+			<evaluate expression="userLeaveService.isOfficeHoliday(userLeave.startDate)" result="viewScope.isOfficeHoliday" />
+			<evaluate expression="userLeave.getHour().getDay()" result="viewScope.days" />
+			<evaluate expression="(isWeekHoliday or isOfficeHoliday) ? 0F : days" result="viewScope.effectiveDays" />
+			<evaluate expression="userLeave.setDays(effectiveDays)"/>
+		</on-entry>
+		<transition on="confirm" to="userLeaveConfirmed">
+			<evaluate expression="userLeaveService.create(userLeave)" />
+		</transition>
+		<transition on="revise" to="enterHourLeaveDetails" />
+		<transition on="cancel" to="cancel" />
+	</view-state>
+	
+	<end-state id="userLeaveConfirmed"></end-state>
+
+	<end-state id="cancel" />
+
+</flow>

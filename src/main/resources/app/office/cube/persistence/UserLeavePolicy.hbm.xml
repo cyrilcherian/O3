@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="app.office.cube.persistence">
+
+    <class name="UserLeavePolicy" table="USER_LEAVE_POLICY">
+        <id name="myKey" column="PKEY">
+            <generator class="hilo"/>
+        </id>
+        <property name="createdDate" update="false" insert="true"  type="date" column="CREATED_DATE"/>
+        <property name="updatedDate" type="date" column="UPDATED_DATE"/>        
+       	<many-to-one name="user" column="USER_ID" class="User" fetch="join" lazy="false" cascade="none"/>
+        <many-to-one name="leavePolicy"  column="POLICY_ID" class="LeavePolicy" fetch="join" lazy="false" cascade="none"/>
+        <property name="daysLeaveAllowed" column="DAYS_ALLOWED"/>
+    </class>
+	<query name="listUserLeavepolicy">
+		from app.office.cube.persistence.UserLeavePolicy
+	</query>
+</hibernate-mapping>

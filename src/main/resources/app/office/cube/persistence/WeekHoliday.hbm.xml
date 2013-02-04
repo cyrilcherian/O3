@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="app.office.cube.persistence">
+
+    <class name="WeekHoliday" table="WEEK_HOLIDAY">
+        <id name="myKey" column="PKEY">
+            <generator class="increment"/>
+        </id>
+        <property name="createdDate" update="false" insert="true"  type="date" column="CREATED_DATE"/>
+        <property name="updatedDate" type="date" column="UPDATED_DATE"/>        
+        <property name="day" column="DAY">
+        	<type name="org.hibernate.type.EnumType">
+				<param name="enumClass">app.office.cube.persistence.Days</param>
+				<param name="type">12</param>
+			</type>
+        </property>
+        <property name="frequency" column="FREQUENCY">
+        	<type name="org.hibernate.type.EnumType">
+				<param name="enumClass">app.office.cube.persistence.Frequency</param>
+				<param name="type">12</param>
+			</type>
+        </property>
+    </class>
+	<query name="weekholidays">
+		from app.office.cube.persistence.WeekHoliday
+	</query>
+
+</hibernate-mapping>

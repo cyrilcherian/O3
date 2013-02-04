@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="app.office.cube.persistence">
+
+    <class name="User" table="USER">
+        <id name="myKey" column="PKEY">
+            <generator class="increment"/>
+        </id>
+        <property name="createdDate" update="false" insert="true"  type="date" column="CREATED_DATE"/>
+        <property name="updatedDate" type="date" column="UPDATED_DATE"/>        
+        <property name="userName" column="USER_NAME" unique="true" not-null="true"/>
+        <property name="firstName" column="FIRST_NAME" not-null="true"/>
+        <property name="lastName" column="LAST_NAME" not-null="true"/>
+        <property name="corporateID" column="CORPRATE_ID" unique="true" not-null="true"/>
+        <property name="password" column="PASSWORD" not-null="true"/>
+        <property name="email" column="EMAIL"/>
+        <property name="active"  not-null="true">
+        	<column name="ACTIVE" default="1"/>
+        </property>
+        <property name="authorities" column="AUTHORITIES"/>
+        <many-to-one name="officeAddress" class="Address" column="USER_OFFICE_ID" cascade="none" fetch="join" lazy="proxy"/>
+        <many-to-one name="homeAddress" class="Address" column="USER_HOME_ID" cascade="all" fetch="join" lazy="proxy"/>
+        <set name="roles" table="ROLE" cascade="all-delete-orphan" fetch="join" lazy="true">
+			<key column="USER_ID" not-null="true"/>
+			<one-to-many class="Role" />
+		</set>
+    </class>
+	<query name="listUsers">
+		from app.office.cube.persistence.User
+	</query>
+	
+</hibernate-mapping>
