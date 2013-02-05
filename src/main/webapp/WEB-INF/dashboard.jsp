@@ -10,7 +10,7 @@
 			"sPaginationType": "full_numbers",
 			"aoColumns": [
 				{ "sTitle": "Corporate ID", "mDataProp": "corporateID" },
-				{ "sTitle": "Username" , "mDataPro p": "userName"},
+				{ "sTitle": "Username" , "mDataProp": "userName"},
 				{ "sTitle": "Firstname" , "mDataProp": "firstName"},
 				{ "sTitle": "Lastname" , "mDataProp": "lastName"}
 			]
