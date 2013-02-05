@@ -1,0 +1,12 @@
+#!/bin/bash
+# copy data
+sh /home/user/apache-tomcat-7.0.29/bin/catalina.sh stop
+echo "Server stopped!"
+mvn clean compile install -Dmaven.test.skip=true
+echo "Code compiled!"
+rm -fr /home/user/apache-tomcat-7.0.29/webapps/office-cube
+echo "Folder removed!"
+cp /home/user/workspace-office/O3/target/office-cube.war /home/user/apache-tomcat-7.0.29/webapps
+echo "File copied!"
+sh /home/user/apache-tomcat-7.0.29/bin/catalina.sh jpda start
+echo "Application Ready!"
