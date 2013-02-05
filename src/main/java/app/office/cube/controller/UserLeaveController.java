@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import app.office.cube.core.services.IOfficeService;
 import app.office.cube.core.services.IUserLeaveService;
 import app.office.cube.persistence.LeaveStatus;
+import app.office.cube.persistence.Notification;
 import app.office.cube.persistence.User;
 import app.office.cube.persistence.UserLeave;
 import app.office.cube.persistence.UserLeavePolicy;
@@ -35,16 +36,20 @@ public class UserLeaveController {
 	private IOfficeService<UserLeavePolicy> ulpService;
 	private IUserLeaveService<UserLeave> ulService;
 	private IOfficeService<User> uService;
+	private IOfficeService<Notification> nService;
 	
 	private ObjectMapper mapper = new ObjectMapper();
 	
 	@Autowired
 	public UserLeaveController(@Qualifier(value="userLeavePolicyService") IOfficeService<UserLeavePolicy> service,
 			@Qualifier(value="userLeaveService") IUserLeaveService<UserLeave> ulService,
-			@Qualifier(value="usersService") IOfficeService<User> uService){
+			@Qualifier(value="usersService") IOfficeService<User> uService,
+			@Qualifier(value="notificationService") IOfficeService<Notification> nService
+			){
 		this.ulpService = service;
 		this.ulService = ulService;
 		this.uService = uService;
+		this.nService = nService;
 	}
 
 	@RequestMapping(value="/userleave/applylist", method = RequestMethod.GET)
@@ -106,7 +111,13 @@ public class UserLeaveController {
 	public String approveLeave(@PathVariable Long id, Model model) {
 		UserLeave ul = ulService.get(id);
 		ul.setStatus(LeaveStatus.APPROVED);
+		Notification n = new Notification();
+		UserLeavePolicy ulp = ulpService.get(ul.getUserLeavePolicy().getMyKey());
+		n.setUser(ulp.getUser());
+		n.setDescription("Leave is approved");
+		n.setSummary("Leave Approved");
 		ulService.update(ul);
+		nService.create(n);
 		return "redirect:/userleave/admin/approvelist";
 	}
 	@RequestMapping(value="/userleave/admin/disapprove/{id}", method=RequestMethod.POST)
@@ -116,7 +127,13 @@ public class UserLeaveController {
 		dc.add(Restrictions.idEq(id));
 		UserLeave ul = ulService.get(dc);
 		ul.setStatus(LeaveStatus.DISAPPROVED);
+		Notification n = new Notification();
+		UserLeavePolicy ulp = ulpService.get(ul.getUserLeavePolicy().getMyKey());
+		n.setUser(ulp.getUser());
+		n.setDescription("Leave is disapproved");
+		n.setSummary("Leave Disapproved");
 		ulService.update(ul);
+		nService.create(n);
 		float daysLeaveAllowed = ul.getUserLeavePolicy().getDaysLeaveAllowed();
 		ul.getUserLeavePolicy().setDaysLeaveAllowed(daysLeaveAllowed + ul.getDays());
 		ulpService.update(ul.getUserLeavePolicy());

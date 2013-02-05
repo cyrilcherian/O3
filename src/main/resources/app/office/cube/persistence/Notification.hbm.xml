@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="app.office.cube.persistence">
+    <class name="Notification" table="NOTIFICATION">
+        <id name="myKey" column="PKEY">
+            <generator class="increment"/>
+        </id>
+        <property name="createdDate" update="false" insert="true"  type="date" column="CREATED_DATE"/>
+        <property name="updatedDate" type="date" column="UPDATED_DATE"/>        
+        <many-to-one name="user" class="User" column="USER_ID" cascade="none" fetch="join" lazy="false" not-null="true"/>
+        <property name="description" column="DESCRIPTION" not-null="true"/>
+        <property name="summary" column="Summary" />
+     </class>
+    <query name="listNotifications" >
+		from app.office.cube.persistence.Notification
+	</query>
+
+</hibernate-mapping>

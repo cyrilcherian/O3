@@ -38,6 +38,7 @@
 			<value>app\office\cube\persistence\Project.hbm.xml</value>
 			<value>app\office\cube\persistence\Task.hbm.xml</value>
 			<value>app\office\cube\persistence\Work.hbm.xml</value>
+			<value>app\office\cube\persistence\Notification.hbm.xml</value>
 		</list>
     	</property>
 		<property name="hibernateProperties">
