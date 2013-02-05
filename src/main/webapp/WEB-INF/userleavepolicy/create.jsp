@@ -26,7 +26,7 @@ $(document).ready(function() {
 			
 		]
 	} );
-	$('#example').dataTable().fnUpdate(${userJsonData});	
+	$('#example').dataTable().fnAddData(${userJsonData});	
 });
 </script>
 <form:form class="cmxform"  id="userLeavePolicyForm" modelAttribute="userLeavePolicy" action="create" method="post">
