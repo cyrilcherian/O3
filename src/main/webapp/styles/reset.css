@@ -61,3 +61,13 @@ input, textarea, select {
 }
 	
 select { padding: 0; }
+
+/* Portlet
+------------------------------*/
+.columns { width: 50%; float: left; padding-bottom: 100px; }
+.portlet { margin: 0 1em 1em 0; }
+.portlet-header { margin: 0.3em; padding-bottom: 6px; padding-left: 6px; padding-top: 6px }
+.portlet-header .ui-icon { float: right; }
+.portlet-content { padding: 0.4em; }
+.ui-sortable-placeholder { border: 1px dotted black; visibility: visible !important; height: 50px !important; }
+.ui-sortable-placeholder * { visibility: hidden; }

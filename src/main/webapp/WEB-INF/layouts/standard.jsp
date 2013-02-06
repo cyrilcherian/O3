@@ -13,12 +13,14 @@
 	<link rel="stylesheet" href="<c:url value="/resources/styles/data_table.css" />" type="text/css" media="screen" />
 	<link rel="stylesheet" href="<c:url value="/resources/styles/data_table_page.css" />" type="text/css" media="screen" />
 	<link rel="stylesheet" href="<c:url value="/resources/styles/jquery-ui-1.8.16.custom.css" />" type="text/css" media="screen" />
+	<link rel="stylesheet" href="<c:url value="/resources/styles/jquery-ui.css" />" type="text/css" media="screen" />
 	<link rel="stylesheet" href="<c:url value="/resources/styles/screen.css" />" type="text/css" media="screen" />
 	<link rel="stylesheet" href="<c:url value="/resources/styles/fullcalendar.css" />" type="text/css" />
 	<link rel="stylesheet" href="<c:url value="/resources/styles/fullcalendar.print.css" />" type="text/css" media="print" />
 	
     <script type="text/javascript" src="<c:url value="/resources/javascript/jquery-1.7.js" />"></script>
 	<script type="text/javascript" src="<c:url value="/resources/javascript/jquery.bgiframe-2.1.2.js" />"></script>
+	<script type="text/javascript" src="<c:url value="/resources/javascript/jquery-ui.js" />"></script>
 	<script type="text/javascript" src="<c:url value="/resources/javascript/jquery.ui.core.js" />"></script>
 	<script type="text/javascript" src="<c:url value="/resources/javascript/jquery.ui.widget.js" />"></script>
 	<script type="text/javascript" src="<c:url value="/resources/javascript/jquery.ui.mouse.js" />"></script>
