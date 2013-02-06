@@ -36,7 +36,7 @@
 						  "sClass": "center",
 						  "fnRender": function(obj) {
 								var sReturn = obj.aData["myKey"];
-								data = "<a href=\"/office-cube/userleavepolicy/edit/"+sReturn+"\">Edit</a>";
+								data = "<a href=\"/office-cube/userleavepolicy/admin/edit/"+sReturn+"\">Edit</a>";
 								return data;
 							}
 						}
