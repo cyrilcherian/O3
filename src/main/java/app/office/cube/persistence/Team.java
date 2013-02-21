@@ -3,6 +3,7 @@
  */
 package app.office.cube.persistence;
 
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
@@ -38,7 +39,7 @@ public class Team extends Persistable {
 	public Set<User> getUsers() {
 		return users;
 	}
-
+	
 	public void setUsers(Set<User> users) {
 		this.users = users;
 	}
