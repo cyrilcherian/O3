@@ -19,22 +19,10 @@
 	<link rel="stylesheet" href="<c:url value="/resources/styles/fullcalendar.print.css" />" type="text/css" media="print" />
 	
     <script type="text/javascript" src="<c:url value="/resources/javascript/jquery-1.7.js" />"></script>
-	<script type="text/javascript" src="<c:url value="/resources/javascript/jquery.bgiframe-2.1.2.js" />"></script>
-	<script type="text/javascript" src="<c:url value="/resources/javascript/jquery-ui.js" />"></script>
-	<script type="text/javascript" src="<c:url value="/resources/javascript/jquery.ui.core.js" />"></script>
-	<script type="text/javascript" src="<c:url value="/resources/javascript/jquery.ui.widget.js" />"></script>
-	<script type="text/javascript" src="<c:url value="/resources/javascript/jquery.ui.mouse.js" />"></script>
-	<script type="text/javascript" src="<c:url value="/resources/javascript/jquery.ui.button.js" />"></script>
-	<script type="text/javascript" src="<c:url value="/resources/javascript/jquery.ui.draggable.js" />"></script>
-	<script type="text/javascript" src="<c:url value="/resources/javascript/jquery.ui.position.js" />"></script>
-	<script type="text/javascript" src="<c:url value="/resources/javascript/jquery.ui.resizable.js" />"></script>
-	<script type="text/javascript" src="<c:url value="/resources/javascript/jquery.ui.dialog.js" />"></script>	
+    <script type="text/javascript" src="<c:url value="/resources/javascript/jquery-ui-1.10.1.custom.min.js" />"></script>
 	<script type="text/javascript" src="<c:url value="/resources/javascript/jquery.layout-latest.js" />"></script>
 	<script type="text/javascript" src="<c:url value="/resources/javascript/jquery.dataTables.js" />"></script>
 	<script type="text/javascript" src="<c:url value="/resources/javascript/jquery.validate.js" />"></script>
-	<script type="text/javascript" src="<c:url value="/resources/javascript/jquery.ui.datepicker.js" />"></script>
-	<script type="text/javascript" src="<c:url value="/resources/javascript/jquery.ui.autocomplete.js" />"></script>
-	<script type="text/javascript" src="<c:url value="/resources/javascript/jquery.ui.tabs.js" />"></script>
 	<script type="text/javascript" src="<c:url value="/resources/javascript/fullcalendar.js" />"></script>
 	<script type="text/javascript" src="<c:url value="/resources/javascript/jQuery.download.js" />"></script>
 	
