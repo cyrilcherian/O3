@@ -4,7 +4,7 @@
 	"http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
 	
 <tiles-definitions>
-	<definition name="user/*" extends="standardLayout">
+	<definition name="notification/*" extends="standardLayout">
 		<put-attribute name="center" value="/WEB-INF/notification/{1}.jsp" />
 		<put-attribute name="menu" value="/WEB-INF/notification/menu.jsp" />
 	</definition>

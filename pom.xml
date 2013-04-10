@@ -38,11 +38,11 @@
 			<version>2.1.2.osgi</version>
 		</dependency>
 		<dependency>
-	    	<groupId>org.apache.poi</groupId>
-	    	<artifactId>poi</artifactId>
-	    	<version>3.6</version>
-	    	<type>jar</type>
-    	</dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>3.6</version>
+			<type>jar</type>
+		</dependency>
 		<dependency>
 			<groupId>org.apache.tiles</groupId>
 			<artifactId>com.springsource.org.apache.tiles.core</artifactId>
@@ -205,6 +205,14 @@
 			<artifactId>jackson-mapper-asl</artifactId>
 			<version>1.6.4</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-catalina</artifactId>
+			<version>7.0.39</version>
+			<scope>provided</scope>
+		</dependency>
+            
 	</dependencies>
 	<repositories>
 		<repository>

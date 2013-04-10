@@ -18,14 +18,19 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import app.office.cube.convertors.UserConvertor;
 import app.office.cube.core.services.IOfficeService;
+import app.office.cube.formbean.NotificationFormBean;
+import app.office.cube.formbean.TeamFormBean;
+import app.office.cube.helpers.RoleType;
 import app.office.cube.persistence.Notification;
 import app.office.cube.persistence.Team;
 import app.office.cube.persistence.User;
@@ -54,8 +59,6 @@ public class NotificationController {
 
 	@InitBinder
 	protected void initBinder(WebDataBinder binder) {
-		binder.registerCustomEditor(User.class, "user", new UserConvertor(
-				uService));
 	}
 
 	@RequestMapping(value = { "/notification/create" }, method = RequestMethod.POST)
@@ -89,24 +92,34 @@ public class NotificationController {
 			service.create(n);
 		}
 	}
+	@RequestMapping(value = "/notification/new", method = RequestMethod.GET)
+	public String getCreateForm(Model model) {
+		NotificationFormBean nfb = new NotificationFormBean();
+		model.addAttribute("notificationBean", nfb);
+		model.addAttribute("notifiers", getMembers());
+		return "notification/new";
+	}
 
-	@RequestMapping(value = { "/notification/getmembers" }, method = RequestMethod.GET)
-	public String getMembers() {
-		Map<String, List<Map<Long, String>>> members = new HashMap<String, List<Map<Long, String>>>();
-		List<Map<Long, String>> us = new ArrayList<Map<Long, String>>();
+	private String getMembers() {
+		Map<String, List<Map<String, String>>> members = new HashMap<String, List<Map<String, String>>>();
+		List<Map<String, String>> notifiers = new ArrayList<Map<String, String>>();
+		HashMap<String, String> m = new HashMap<String, String>();
 		for (User u : uService.findAll()) {
-			HashMap<Long, String> m = new HashMap<Long, String>();
-			m.put(u.getMyKey(), u.getUserName());
-			us.add(m);
+			m.put("name", u.getUserName());
+			m.put("id", u.getMyKey() + "");
+			notifiers.add(m);
+			m.clear();
 		}
-		members.put("users", us);
-		List<Map<Long, String>> ts = new ArrayList<Map<Long, String>>();
 		for (Team t : tService.findAll()) {
-			HashMap<Long, String> m = new HashMap<Long, String>();
-			m.put(t.getMyKey(), t.getName());
-			ts.add(m);
+			m.put("name", t.getName());
+			m.put("id", t.getMyKey() + "");
+			notifiers.add(m);
+			m.clear();
 		}
-		members.put("teams", ts);
+		m.put("name", "All");
+		m.put("id", "-1");
+		notifiers.add(m);
+		members.put("data", notifiers);
 		String jsonData = "";
 		try {
 			jsonData = mapper.writeValueAsString(members);

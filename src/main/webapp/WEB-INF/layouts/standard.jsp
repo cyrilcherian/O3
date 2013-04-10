@@ -8,6 +8,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Office Cube Application</title>
+	<link rel="stylesheet" href="<c:url value="/resources/styles/chosen.css" />" type="text/css" />
 	<link rel="stylesheet" href="<c:url value="/resources/styles/booking.css" />" type="text/css" media="screen" />
 	<link rel="stylesheet" href="<c:url value="/resources/styles/layout-default-latest.css" />" type="text/css" media="screen" />
 	<link rel="stylesheet" href="<c:url value="/resources/styles/data_table.css" />" type="text/css" media="screen" />
@@ -25,6 +26,7 @@
 	<script type="text/javascript" src="<c:url value="/resources/javascript/jquery.validate.js" />"></script>
 	<script type="text/javascript" src="<c:url value="/resources/javascript/fullcalendar.js" />"></script>
 	<script type="text/javascript" src="<c:url value="/resources/javascript/jQuery.download.js" />"></script>
+	<script type="text/javascript" src="<c:url value="/resources/javascript/chosen.jquery.min.js" />"></script>
 	
 	<SCRIPT type="text/javascript">$(document).ready(function () {	$('body').layout({ 
 		north__scrolable: false,
